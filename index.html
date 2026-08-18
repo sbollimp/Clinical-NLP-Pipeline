@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clinical NLP — explainability reports</title><style>
+:root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
+        --pos:#0f766e; --neg:#be123c; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink);
+       font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       line-height:1.5; }
+.wrap { max-width:1280px; margin:0 auto; padding:28px 24px 64px; }
+h1 { font-size:22px; margin:0 0 4px; letter-spacing:-0.01em; }
+h2 { font-size:15px; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.06em;
+     color:var(--muted); font-weight:600; }
+h3 { font-size:14px; margin:16px 0 8px; }
+a { color:#1d4ed8; }
+.sub { color:var(--muted); font-size:13px; margin-bottom:20px; }
+.grid { display:grid; grid-template-columns:1.15fr 1fr; gap:20px; align-items:start; }
+@media (max-width:1000px){ .grid { grid-template-columns:1fr; } }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px;
+        padding:18px 20px; margin-bottom:20px; }
+.note { white-space:pre-wrap; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+        font-size:12.5px; line-height:1.85; max-height:78vh; overflow:auto; }
+mark { padding:1px 2px; border-radius:3px; border-bottom:2px solid currentColor; }
+.badge { font-size:9px; font-weight:700; text-transform:uppercase; vertical-align:super;
+         margin-left:2px; letter-spacing:0.04em; }
+.legend { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.chip { font-size:11px; padding:3px 9px; border-radius:999px; border:1px solid var(--line); }
+.kv { display:flex; justify-content:space-between; gap:12px; padding:6px 0;
+      border-bottom:1px dashed var(--line); font-size:13px; }
+.kv:last-child { border-bottom:none; }
+.kv .k { color:var(--muted); }
+.pred { font-weight:650; }
+.bar-row { display:grid; grid-template-columns:150px 1fr 62px; gap:10px; align-items:center;
+           font-size:12px; margin:4px 0; }
+.bar-row .term { font-family:ui-monospace,Menlo,monospace; overflow:hidden;
+                 text-overflow:ellipsis; white-space:nowrap; }
+.bar { height:9px; border-radius:3px; }
+.bar-wrap { background:#f1f5f9; border-radius:3px; }
+.val { text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+th { text-align:left; color:var(--muted); font-weight:600; padding:7px 8px;
+     border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--card); }
+td { padding:7px 8px; border-bottom:1px solid #f1f5f9; vertical-align:top; }
+.why { color:var(--muted); font-size:11.5px; }
+.banner { border-radius:8px; padding:11px 14px; font-size:13px; margin-bottom:18px; }
+.banner.review { background:#fef3c7; border:1px solid #fcd34d; color:#78350f; }
+.banner.ok { background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; }
+.small { font-size:11.5px; color:var(--muted); }
+details { margin-top:10px; }
+summary { cursor:pointer; font-size:12.5px; color:var(--muted); }
+pre.json { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px;
+           font-size:11px; overflow:auto; max-height:340px; }
+.tag { display:inline-block; background:#eef2ff; color:#3730a3; border-radius:4px;
+       padding:1px 7px; font-size:11.5px; margin:2px 4px 2px 0; }
+</style></head>
+<body><div class="wrap">
+  <h1>Clinical Document NLP Pipeline — explainability reports</h1>
+  <div class="sub">One report per note. Each shows the annotated text, the structured
+    output, and the exact evidence behind every prediction.
+    See <a href="../metrics.md">metrics.md</a> for aggregate performance.</div>
+  <div class="card">
+    <table><thead><tr><th>note</th><th>note type</th><th>risk</th><th>problem flags</th>
+    <th>entities</th><th>status</th></tr></thead><tbody><tr><td><a href='NOTE-00510.html'>NOTE-00510</a></td><td>progress_note</td><td>medium</td><td>pneumonia, sepsis</td><td class='val'>46</td><td>ok</td></tr><tr><td><a href='NOTE-00511.html'>NOTE-00511</a></td><td>ed_note</td><td>medium</td><td>ckd, diabetes</td><td class='val'>46</td><td>⚠ review</td></tr><tr><td><a href='NOTE-00512.html'>NOTE-00512</a></td><td>discharge_summary</td><td>medium</td><td>atrial_fibrillation, ckd</td><td class='val'>58</td><td>ok</td></tr><tr><td><a href='NOTE-00513.html'>NOTE-00513</a></td><td>ed_note</td><td>high</td><td>ckd, diabetes, sepsis</td><td class='val'>45</td><td>ok</td></tr><tr><td><a href='NOTE-00514.html'>NOTE-00514</a></td><td>discharge_summary</td><td>medium</td><td>heart_failure, hypertension, pneumonia</td><td class='val'>59</td><td>ok</td></tr><tr><td><a href='NOTE-00515.html'>NOTE-00515</a></td><td>ed_note</td><td>medium</td><td>—</td><td class='val'>38</td><td>ok</td></tr></tbody></table>
+  </div>
+</div></body></html>

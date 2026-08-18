@@ -1,0 +1,38 @@
+CONSULTATION NOTE
+=================
+
+Patient: Riley Bhattacharya    MRN: 6446092
+Date of Service: 05/27/2024
+Attending: Dr. Bhattacharya    Service: Cardiology
+Unit: Telemetry
+
+CHIEF COMPLAINT
+Presenting complaint of sepsis for 1 day(s).
+
+HISTORY OF PRESENT ILLNESS
+82 year old male with a past medical history of T2DM and chronic kidney disease who presents with sepsis. Work-up is ongoing to evaluate for altered mental status. Patient denies diabetic ketoacidosis. Family history is notable for brother with sepsis. Patient has had 0 hospital admission(s) in the last 12 months.
+
+DISCHARGE MEDICATIONS
+* piperacillin-tazobactam 3.375 g IV q8h
+* sevelamer 800 mg PO TID
+* insulin glargine 18 units SC daily
+* metformin 850 mg PO BID
+* sodium bicarbonate 50 mEq IV once
+
+LABORATORY RESULTS
+Pertinent results: hemoglobin A1c of 13.48 % (H), glucoes of 304 mg/dL (ABNORMAL), creatinine of 0.67 mg/dL, bun of 81 mg/dL (H), potassium of 6.48 mEq/L (ABNORMAL), BNP of 46 pg/mL, white lbood cell count of 5.34 K/uL and lactate of 0.82 mmol/L.
+
+STUDIES
+* hemodialysis performed on 06/24/2024; consistent with clinical picture.
+
+HOSPITAL COURSE
+The patient's sepsis responded to treatment on sevelamer 800 mg PO TID. Follow-up hemoglobin A1c was 12.5 % on the day of discharge. A cardiac catheterization on 07/11/2024 was negative for pulmonary embolism. Known T2DM required no acute intervention.
+
+ASSESSMENT AND PLAN
+1. sepsis - escalating therapy.
+2. altered mental sttaus - improving on current therapy.
+3. septic shock - treating empirically.
+4. History of T2DM - well controlled.
+5. History of chrronic kidney disease - optimising outpatient management.
+Monitor for pneumonia.
+

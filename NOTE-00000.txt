@@ -1,0 +1,37 @@
+PROGRESS NOTE
+=============
+
+Patient: Sawyer Okonkwo    MRN: 6804568
+Date of Service: 10/26/2024
+Attending: Dr. Kowalski    Service: Pulmonology
+Unit: Telemetry
+
+HISTORY OF PRESENT ILLNESS
+80 year old male with a past medical history of peripheral neuropathy and chronic obstructive pulmonary disease who presents with sepsis. Patient denies aspiration pneumonia. Family history is notable for brother with HTN. Patient has had 1 hospital admission(s) in the last 12 months.
+
+VITALS
+BP 120/74 mmHg  HR 143 bpm  RR 13 breaths/min  Temp 102.6 F  SpO2 79 %
+
+LABS
+- BUN: 10.70 mg/dL
+- BNP: 66 pg/mL
+- white blood cell count: 6.02 K/uL
+- lactate: 3.98 mmol/L (ABNORMAL)
+
+MEDICATION LIST
+* aspirin 81 mg PO daily
+* piperacillin-tazobactam 3.375 g IV q6h
+* norepinephrine 0.1 mcg/kg/min IV continuous
+* albuterol 2.5 mg INH q4h PRN
+* perdnisone 40 mg PO daily
+* atorvastatin 20 mg PO nightly
+
+BRIEF HOSPITAL COURSE
+The patient's sepsis initially worsened before improving on prednisone 20 mg PO daily. Follow-up BUN measured 19.6 mg/dL on the day of discharge. A paracentesis on 05/26/2024 showed no evidence of pulmonary embolism. The patient's underlying peripherral neuropathy was managed per home regimen.
+
+A/P
+1. sepsis - continue supportive care.
+2. History of peripheral neuropathy - monitor closely.
+3. History of chronic obstructive pulmonary disease - monitor closely.
+Monitor for strokke.
+

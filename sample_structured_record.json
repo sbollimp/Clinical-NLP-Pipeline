@@ -1,0 +1,775 @@
+{
+  "doc_id": "NOTE-00510",
+  "patient_id": "PT-82231",
+  "encounter_date": "06/18/2024",
+  "note_type": "progress_note",
+  "problems": [
+    {
+      "text": "depression",
+      "concept": "Major depressive disorder",
+      "code": "F32.9",
+      "assertion": "historical",
+      "section": "HPI",
+      "start": 235,
+      "end": 245,
+      "confidence": 0.999,
+      "source": "hybrid",
+      "mention_count": 3
+    },
+    {
+      "text": "community acquired pneumonia",
+      "concept": "Community acquired pneumonia",
+      "code": "J18.9",
+      "assertion": "present",
+      "section": "HPI",
+      "start": 264,
+      "end": 292,
+      "confidence": 0.999,
+      "source": "hybrid",
+      "mention_count": 3
+    },
+    {
+      "text": "fever",
+      "concept": "Fever",
+      "code": "R50.9",
+      "assertion": "present",
+      "section": "ASSESSMENT",
+      "start": 1277,
+      "end": 1282,
+      "confidence": 0.999,
+      "source": "hybrid"
+    },
+    {
+      "text": "urosepsis",
+      "concept": "Urosepsis",
+      "code": "A41.9",
+      "assertion": "present",
+      "section": "ASSESSMENT",
+      "start": 1310,
+      "end": 1319,
+      "confidence": 0.999,
+      "source": "hybrid"
+    }
+  ],
+  "medications": [
+    {
+      "name": "Vancomycin",
+      "text": "vancomycin",
+      "code": "RX11124",
+      "dose": "1 g",
+      "route": "IV",
+      "frequency": "q12h",
+      "status": "active",
+      "assertion": "present",
+      "section": "MEDICATIONS",
+      "confidence": 0.999,
+      "start": 764,
+      "end": 774,
+      "mention_count": 2
+    },
+    {
+      "name": "Piperacillin-Tazobactam",
+      "text": "piperacillin-tazobactam",
+      "code": "RX33533",
+      "dose": "3.375 g",
+      "route": "IV",
+      "frequency": "q6h",
+      "status": "active",
+      "assertion": "present",
+      "section": "MEDICATIONS",
+      "confidence": 0.999,
+      "start": 788,
+      "end": 811
+    },
+    {
+      "name": "Atorvastatin",
+      "text": "atorvastatin",
+      "code": "RX83367",
+      "dose": "40 mg",
+      "route": "PO",
+      "frequency": "nightly",
+      "status": "active",
+      "assertion": "present",
+      "section": "MEDICATIONS",
+      "confidence": 0.999,
+      "start": 831,
+      "end": 843
+    }
+  ],
+  "labs": [
+    {
+      "test": "Glucose",
+      "text": "glucose",
+      "value": "220",
+      "value_numeric": 220.0,
+      "unit": "mg/dL",
+      "abnormal_flag": "H",
+      "section": "LABS",
+      "confidence": 0.999,
+      "start": 595,
+      "end": 602
+    },
+    {
+      "test": "Bun",
+      "text": "BUN",
+      "value": "8.98",
+      "value_numeric": 8.98,
+      "unit": "mg/dL",
+      "abnormal_flag": null,
+      "section": "LABS",
+      "confidence": 0.999,
+      "start": 620,
+      "end": 623
+    },
+    {
+      "test": "Lactate",
+      "text": "lactate",
+      "value": "0.78",
+      "value_numeric": 0.78,
+      "unit": "mmol/L",
+      "abnormal_flag": "L",
+      "section": "LABS",
+      "confidence": 0.999,
+      "start": 638,
+      "end": 645
+    },
+    {
+      "test": "procalcitonin",
+      "text": "procalcitonin",
+      "value": "0.00",
+      "value_numeric": 0.0,
+      "unit": "ng/mL",
+      "abnormal_flag": "H",
+      "section": "LABS",
+      "confidence": 1.0,
+      "start": 661,
+      "end": 674
+    },
+    {
+      "test": "albumin",
+      "text": "albumin",
+      "value": "5.97",
+      "value_numeric": 5.97,
+      "unit": "g/dL",
+      "abnormal_flag": "H",
+      "section": "LABS",
+      "confidence": 1.0,
+      "start": 693,
+      "end": 700
+    },
+    {
+      "test": "Glucose",
+      "text": "glucose",
+      "value": "254.2",
+      "value_numeric": 254.2,
+      "unit": "mg/dL",
+      "abnormal_flag": null,
+      "section": "HOSPITAL_COURSE",
+      "confidence": 0.999,
+      "start": 1010,
+      "end": 1017
+    }
+  ],
+  "vitals": [
+    {
+      "measure": "BP",
+      "value": "178/105",
+      "unit": "mmHg",
+      "confidence": 0.999,
+      "start": 502,
+      "end": 504
+    },
+    {
+      "measure": "HR",
+      "value": "115",
+      "unit": "bpm",
+      "confidence": 0.999,
+      "start": 519,
+      "end": 521
+    },
+    {
+      "measure": "RR",
+      "value": "30",
+      "unit": "breaths/min",
+      "confidence": 0.999,
+      "start": 531,
+      "end": 533
+    },
+    {
+      "measure": "Temp",
+      "value": "97.9",
+      "unit": "F",
+      "confidence": 0.999,
+      "start": 550,
+      "end": 554
+    },
+    {
+      "measure": "SpO2",
+      "value": "85",
+      "unit": "%",
+      "confidence": 0.999,
+      "start": 563,
+      "end": 567
+    }
+  ],
+  "procedures": [
+    {
+      "text": "12-lead ECG",
+      "concept": "12-lead ECG",
+      "code": "93000",
+      "assertion": "present",
+      "section": "HOSPITAL_COURSE",
+      "start": 1073,
+      "end": 1084,
+      "confidence": 0.998,
+      "source": "statistical"
+    }
+  ],
+  "allergies": [],
+  "problem_flags": [
+    "pneumonia",
+    "sepsis"
+  ],
+  "readmission_risk": "medium",
+  "negated_mentions": [
+    {
+      "text": "fever",
+      "concept": "Fever",
+      "code": "R50.9",
+      "assertion": "hypothetical",
+      "section": "HPI",
+      "start": 327,
+      "end": 332,
+      "confidence": 0.999,
+      "source": "hybrid"
+    },
+    {
+      "text": "cellulitis",
+      "concept": "Cellulitis",
+      "code": "L03.90",
+      "assertion": "negated",
+      "section": "HPI",
+      "start": 349,
+      "end": 359,
+      "confidence": 0.999,
+      "source": "hybrid"
+    },
+    {
+      "text": "diabetic ketoacidosis",
+      "concept": "Diabetic ketoacidosis",
+      "code": "E11.10",
+      "assertion": "family_history",
+      "section": "HPI",
+      "start": 403,
+      "end": 424,
+      "confidence": 0.999,
+      "source": "hybrid"
+    },
+    {
+      "text": "shortness of breath",
+      "concept": "Dyspnea",
+      "code": "R06.02",
+      "assertion": "negated",
+      "section": "HOSPITAL_COURSE",
+      "start": 1121,
+      "end": 1140,
+      "confidence": 0.999,
+      "source": "hybrid"
+    },
+    {
+      "text": "fever",
+      "concept": "Fever",
+      "code": "R50.9",
+      "assertion": "hypothetical",
+      "section": "ASSESSMENT",
+      "start": 1408,
+      "end": 1413,
+      "confidence": 0.999,
+      "source": "hybrid"
+    }
+  ],
+  "explanations": {
+    "summary": {
+      "n_entities": 46,
+      "entities_by_source": {
+        "hybrid": 42,
+        "statistical": 4
+      },
+      "entities_by_assertion": {
+        "present": 38,
+        "historical": 3,
+        "hypothetical": 2,
+        "negated": 2,
+        "family_history": 1
+      },
+      "mean_entity_confidence": 0.999,
+      "n_low_confidence_entities": 0,
+      "note_type_confidence": 0.7311,
+      "risk_confidence": 0.77,
+      "review_recommended": false
+    },
+    "note_type": {
+      "prediction": "progress_note",
+      "confidence": 0.7311,
+      "top_terms": [
+        {
+          "term": "progress",
+          "contribution": 0.1147
+        },
+        {
+          "term": "progress note",
+          "contribution": 0.1147
+        },
+        {
+          "term": "months vital",
+          "contribution": 0.0912
+        },
+        {
+          "term": "telemetry history",
+          "contribution": 0.0611
+        }
+      ]
+    },
+    "readmission_risk": {
+      "prediction": "medium",
+      "confidence": 0.77,
+      "top_terms": [
+        {
+          "term": "struct:prior_admissions=1",
+          "contribution": 0.4936
+        },
+        {
+          "term": "struct:n_medications=4",
+          "contribution": 0.1552
+        },
+        {
+          "term": "struct:n_entities_bucket=4",
+          "contribution": 0.1035
+        },
+        {
+          "term": "struct:abnormal_vitals=4",
+          "contribution": 0.0659
+        }
+      ]
+    },
+    "problem_flags": {
+      "prediction": [
+        "pneumonia",
+        "sepsis"
+      ],
+      "label_probabilities": {
+        "diabetes": 0.3067,
+        "heart_failure": 0.1941,
+        "copd": 0.2764,
+        "ckd": 0.1474,
+        "sepsis": 0.7176,
+        "atrial_fibrillation": 0.2227,
+        "pneumonia": 0.7882,
+        "hypertension": 0.3617
+      }
+    },
+    "rule_based_problem_flags": [
+      "pneumonia",
+      "sepsis"
+    ],
+    "structured_features_used_by_risk_model": [
+      "abnormal_labs=3",
+      "abnormal_vitals=4",
+      "disposition=unspecified",
+      "n_affirmed_conditions=8+",
+      "n_chronic=3",
+      "n_entities_bucket=4",
+      "n_labs=6",
+      "n_medications=4",
+      "n_negated_conditions=2",
+      "prior_admissions=1"
+    ],
+    "entities": [
+      {
+        "text": "06/18/2024",
+        "label": "DATE",
+        "assertion": "present",
+        "concept": "06/18/2024",
+        "confidence": 0.999,
+        "why": "Tagged DATE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "depression",
+        "label": "CONDITION",
+        "assertion": "historical",
+        "concept": "Major depressive disorder",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it."
+      },
+      {
+        "text": "community acquired pneumonia",
+        "label": "CONDITION",
+        "assertion": "present",
+        "concept": "Community acquired pneumonia",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "fever",
+        "label": "CONDITION",
+        "assertion": "hypothetical",
+        "concept": "Fever",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked hypothetical because the phrase 'concerning for' appears in scope before it."
+      },
+      {
+        "text": "cellulitis",
+        "label": "CONDITION",
+        "assertion": "negated",
+        "concept": "Cellulitis",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked negated because the phrase 'no evidence of' appears in scope before it."
+      },
+      {
+        "text": "diabetic ketoacidosis",
+        "label": "CONDITION",
+        "assertion": "family_history",
+        "concept": "Diabetic ketoacidosis",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked family history because the phrase 'mother' appears in scope before it."
+      },
+      {
+        "text": "BP",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "BP",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "178/105",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "178/105",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "HR",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "HR",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "115",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "115",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "RR",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "RR",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "30",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "30",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "Temp",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "Temp",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "97.9",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "97.9",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "SpO2",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "SpO2",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "85",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "85",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "glucose",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "Glucose",
+        "confidence": 0.999,
+        "why": "Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "220",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "220",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "BUN",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "Bun",
+        "confidence": 0.999,
+        "why": "Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "8.98",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "8.98",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "lactate",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "Lactate",
+        "confidence": 0.999,
+        "why": "Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "0.78",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "0.78",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "procalcitonin",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "procalcitonin",
+        "confidence": 1.0,
+        "why": "Tagged LAB because the model weighted 'sec=LABS' and 'gaz=O' (confidence 1.00)."
+      },
+      {
+        "text": "0.00",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "0.00",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "albumin",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "albumin",
+        "confidence": 1.0,
+        "why": "Tagged LAB because the model weighted 'sec=LABS' and 'gaz=O' (confidence 1.00)."
+      },
+      {
+        "text": "5.97",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "5.97",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "vancomycin",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "Vancomycin",
+        "confidence": 0.999,
+        "why": "Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "1 g",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "1 g",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "piperacillin-tazobactam",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "Piperacillin-Tazobactam",
+        "confidence": 0.999,
+        "why": "Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "3.375 g",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "3.375 g",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "atorvastatin",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "Atorvastatin",
+        "confidence": 0.999,
+        "why": "Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "40 mg",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "40 mg",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "community acquired pneumonia",
+        "label": "CONDITION",
+        "assertion": "present",
+        "concept": "Community acquired pneumonia",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "vancomycin",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "Vancomycin",
+        "confidence": 0.999,
+        "why": "Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "1 g",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "1 g",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "glucose",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "Glucose",
+        "confidence": 0.999,
+        "why": "Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "254.2",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "254.2",
+        "confidence": 1.0,
+        "why": "Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00)."
+      },
+      {
+        "text": "12-lead ECG",
+        "label": "PROCEDURE",
+        "assertion": "present",
+        "concept": "12-lead ECG",
+        "confidence": 0.998,
+        "why": "Tagged PROCEDURE because the model weighted 'gaz=O' and 'shape[1]=x' (confidence 1.00)."
+      },
+      {
+        "text": "05/15/2024",
+        "label": "DATE",
+        "assertion": "present",
+        "concept": "05/15/2024",
+        "confidence": 0.999,
+        "why": "Tagged DATE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "shortness of breath",
+        "label": "CONDITION",
+        "assertion": "negated",
+        "concept": "Dyspnea",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked negated because the phrase 'no evidence of' appears in scope before it."
+      },
+      {
+        "text": "depression",
+        "label": "CONDITION",
+        "assertion": "historical",
+        "concept": "Major depressive disorder",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'long-standing' appears in scope before it."
+      },
+      {
+        "text": "community acquired pneumonia",
+        "label": "CONDITION",
+        "assertion": "present",
+        "concept": "Community acquired pneumonia",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "fever",
+        "label": "CONDITION",
+        "assertion": "present",
+        "concept": "Fever",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "urosepsis",
+        "label": "CONDITION",
+        "assertion": "present",
+        "concept": "Urosepsis",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "depression",
+        "label": "CONDITION",
+        "assertion": "historical",
+        "concept": "Major depressive disorder",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it."
+      },
+      {
+        "text": "fever",
+        "label": "CONDITION",
+        "assertion": "hypothetical",
+        "concept": "Fever",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked hypothetical because the phrase 'monitor for' appears in scope before it."
+      }
+    ]
+  },
+  "quality": {
+    "n_entities": 46,
+    "n_low_confidence": 0,
+    "low_confidence_examples": [],
+    "n_unmapped_concepts": 2,
+    "unmapped_examples": [
+      "procalcitonin",
+      "albumin"
+    ],
+    "medications_missing_dose": [],
+    "labs_missing_value": [],
+    "completeness_score": 1.0,
+    "needs_review": true,
+    "review_reasons": [
+      "2 unmapped concepts"
+    ]
+  }
+}

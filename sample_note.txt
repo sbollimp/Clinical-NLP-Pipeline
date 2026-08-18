@@ -1,0 +1,34 @@
+PROGRESS NOTE
+=============
+
+Patient: Devon Okonkwo    MRN: 2966652
+Date of Service: 06/18/2024
+Attending: Dr. Kowalski    Service: Cardiology
+Unit: Telemetry
+
+HISTORY OF PRESENT ILLNESS
+55 year old male with a past medical history of depression who presents with community acquired pneumonia. Symptoms are also concerning for fever. No evidence of cellulitis. Family history is notable for mother with diabetic ketoacidosis. Patient has had 1 hospital admission(s) in the last 12 months.
+
+VITAL SIGNS
+BP 178/105 mmHg  HR 115 bpm  RR 30 breaths/min  Temp 97.9 F  SpO2 85 %
+
+LABORATORY RESULTS
+* glucose: 220 mg/dL (H)
+* BUN: 8.98 mg/dL
+* lactate: 0.78 mmol/L
+* procalcitonin: 0.00 ng/mL (H)
+* albumin: 5.97 g/dL (H)
+
+DISCHARGE MEDICATIONS
+Patient was continued on vancomycin 1 g IV q12h, piperacillin-tazobactam 3.375 g IV q6h and atorvastatin 40 mg PO nightly.
+
+BRIEF HOSPITAL COURSE
+During this hospitalisation the community acquired pneumonia remained difficult to control on vancomycin 1 g IV q12h. Repeat glucose came back at 254.2 mg/dL, prompting further work-up. A 12-lead ECG on 05/15/2024 showed no evidence of shortness of breath. Long-standing depression required no acute intervention.
+
+ASSESSMENT AND PLAN
+1. community acquired pneumonia - escalating therapy.
+2. fever - treating empirically.
+3. urosepsis - improving on current therapy.
+4. History of depression - well controlled.
+Monitor for fever.
+

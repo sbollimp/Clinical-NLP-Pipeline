@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="880" viewBox="0 0 980 880" font-family="ui-sans-serif,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1"/></marker></defs>
+<rect width="980" height="880" fill="#f8fafc"/>
+<text x="40" y="44" font-size="19" font-weight="700" fill="#0f172a">Clinical Document NLP Pipeline</text>
+<text x="40" y="65" font-size="12.5" fill="#64748b">Unstructured note in - structured fields plus a per-prediction explanation out</text>
+<rect x="300.0" y="92" width="380" height="46" rx="8" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="490.0" y="111.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Unstructured clinical note</text>
+<text x="490.0" y="128.0" text-anchor="middle" font-size="11" fill="#64748b">.txt  /  .csv  /  .jsonl  /  folder</text>
+<path d="M 490.0 138 L 490.0 158" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="300.0" y="160" width="380" height="42" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="490.0" y="177.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Ingest + validate</text>
+<text x="490.0" y="194.0" text-anchor="middle" font-size="11" fill="#64748b">duplicate ids, empty notes, length QC</text>
+<path d="M 490.0 202 L 490.0 222" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="300.0" y="224" width="380" height="42" rx="8" fill="#fff1f2" stroke="#fb7185" stroke-width="1.4"/>
+<text x="490.0" y="241.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">De-identify</text>
+<text x="490.0" y="258.0" text-anchor="middle" font-size="11" fill="#64748b">length-preserving masks, auditable report</text>
+<path d="M 490.0 266 L 490.0 286" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="255.0" y="288" width="470" height="42" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="490.0" y="305.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Normalise  -  Sectionise  -  Tokenise</text>
+<text x="490.0" y="322.0" text-anchor="middle" font-size="11" fill="#64748b">offsets never change from here on</text>
+<path d="M 490.0 330 L 490.0 352" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="35.0" y="354" width="290" height="52" rx="8" fill="#eff6ff" stroke="#60a5fa" stroke-width="1.4"/>
+<text x="180.0" y="376.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Statistical BIO tagger</text>
+<text x="180.0" y="393.0" text-anchor="middle" font-size="11" fill="#64748b">window features - logistic regression</text>
+<path d="M 180.0 406 L 180.0 424.0 L 490.0 424.0 L 490.0 442" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="345.0" y="354" width="290" height="52" rx="8" fill="#f0fdf4" stroke="#4ade80" stroke-width="1.4"/>
+<text x="490.0" y="376.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Gazetteer</text>
+<text x="490.0" y="393.0" text-anchor="middle" font-size="11" fill="#64748b">longest-match clinical lexicons</text>
+<path d="M 490.0 406 L 490.0 424.0 L 490.0 424.0 L 490.0 442" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="655.0" y="354" width="290" height="52" rx="8" fill="#fefce8" stroke="#facc15" stroke-width="1.4"/>
+<text x="800.0" y="376.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Regex rules</text>
+<text x="800.0" y="393.0" text-anchor="middle" font-size="11" fill="#64748b">doses - values - dates</text>
+<path d="M 800.0 406 L 800.0 424.0 L 490.0 424.0 L 490.0 442" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="255.0" y="444" width="470" height="46" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.4"/>
+<text x="490.0" y="463.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Hybrid merge + conflict resolution</text>
+<text x="490.0" y="480.0" text-anchor="middle" font-size="11" fill="#64748b">precision-first, recall-recovering; provenance kept per span</text>
+<path d="M 490.0 490 L 490.0 510" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="215.0" y="512" width="550" height="50" rx="8" fill="#ffedd5" stroke="#f97316" stroke-width="1.4"/>
+<text x="490.0" y="533.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Assertion detection  +  concept normalisation</text>
+<text x="490.0" y="550.0" text-anchor="middle" font-size="11" fill="#64748b">present - negated - hypothetical - historical - family history</text>
+<path d="M 490.0 562 L 490.0 584" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="60" y="586" width="400" height="62" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.4"/>
+<text x="260.0" y="613.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Document classification</text>
+<text x="260.0" y="629.0" text-anchor="middle" font-size="11" fill="#64748b">note type - problem flags - readmission risk</text>
+<rect x="520" y="586" width="400" height="62" rx="8" fill="#ecfdf5" stroke="#34d399" stroke-width="1.4"/>
+<text x="720.0" y="613.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Structure into analytics fields</text>
+<text x="720.0" y="630.0" text-anchor="middle" font-size="11" fill="#64748b">problems - medications - labs - vitals - allergies</text>
+<path d="M 460 617 L 512 617" stroke="#cbd5e1" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="486" y="608" text-anchor="middle" font-size="10" fill="#64748b">labels</text>
+<path d="M 260 648 L 260 668" stroke="#cbd5e1" stroke-width="1.6" fill="none"/>
+<path d="M 720 648 L 720 668" stroke="#cbd5e1" stroke-width="1.6" fill="none"/>
+<path d="M 260 668 L 720 668" stroke="#cbd5e1" stroke-width="1.6" fill="none"/>
+<path d="M 490.0 668 L 490.0 692" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<text x="260.0" y="644.0" text-anchor="middle" font-size="10" fill="#7c3aed">risk model is stacked on the extracted structure</text>
+<rect x="215.0" y="694" width="550" height="46" rx="8" fill="#eef2ff" stroke="#818cf8" stroke-width="1.4"/>
+<text x="490.0" y="713.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">Explainability</text>
+<text x="490.0" y="730.0" text-anchor="middle" font-size="11" fill="#64748b">exact linear attributions, rule provenance, counterfactuals</text>
+<path d="M 490.0 740 L 490.0 762" stroke="#cbd5e1" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<rect x="35.0" y="764" width="290" height="50" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="1.4"/>
+<text x="180.0" y="785.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">structured_records</text>
+<text x="180.0" y="802.0" text-anchor="middle" font-size="11" fill="#64748b">.jsonl  /  .csv</text>
+<rect x="345.0" y="764" width="290" height="50" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="1.4"/>
+<text x="490.0" y="785.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">explanations</text>
+<text x="490.0" y="802.0" text-anchor="middle" font-size="11" fill="#64748b">self-contained HTML</text>
+<rect x="655.0" y="764" width="290" height="50" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="1.4"/>
+<text x="800.0" y="785.0" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0f172a">metrics</text>
+<text x="800.0" y="802.0" text-anchor="middle" font-size="11" fill="#64748b">calibration + ablation</text>
+<text x="40" y="856" font-size="11" fill="#64748b">Every span carries: label - assertion - canonical concept + code - confidence - which recognisers fired - why.</text>
+</svg>

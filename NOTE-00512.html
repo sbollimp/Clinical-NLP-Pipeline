@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Explainability report — NOTE-00512</title><style>
+:root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
+        --pos:#0f766e; --neg:#be123c; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink);
+       font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       line-height:1.5; }
+.wrap { max-width:1280px; margin:0 auto; padding:28px 24px 64px; }
+h1 { font-size:22px; margin:0 0 4px; letter-spacing:-0.01em; }
+h2 { font-size:15px; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.06em;
+     color:var(--muted); font-weight:600; }
+h3 { font-size:14px; margin:16px 0 8px; }
+a { color:#1d4ed8; }
+.sub { color:var(--muted); font-size:13px; margin-bottom:20px; }
+.grid { display:grid; grid-template-columns:1.15fr 1fr; gap:20px; align-items:start; }
+@media (max-width:1000px){ .grid { grid-template-columns:1fr; } }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px;
+        padding:18px 20px; margin-bottom:20px; }
+.note { white-space:pre-wrap; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+        font-size:12.5px; line-height:1.85; max-height:78vh; overflow:auto; }
+mark { padding:1px 2px; border-radius:3px; border-bottom:2px solid currentColor; }
+.badge { font-size:9px; font-weight:700; text-transform:uppercase; vertical-align:super;
+         margin-left:2px; letter-spacing:0.04em; }
+.legend { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.chip { font-size:11px; padding:3px 9px; border-radius:999px; border:1px solid var(--line); }
+.kv { display:flex; justify-content:space-between; gap:12px; padding:6px 0;
+      border-bottom:1px dashed var(--line); font-size:13px; }
+.kv:last-child { border-bottom:none; }
+.kv .k { color:var(--muted); }
+.pred { font-weight:650; }
+.bar-row { display:grid; grid-template-columns:150px 1fr 62px; gap:10px; align-items:center;
+           font-size:12px; margin:4px 0; }
+.bar-row .term { font-family:ui-monospace,Menlo,monospace; overflow:hidden;
+                 text-overflow:ellipsis; white-space:nowrap; }
+.bar { height:9px; border-radius:3px; }
+.bar-wrap { background:#f1f5f9; border-radius:3px; }
+.val { text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+th { text-align:left; color:var(--muted); font-weight:600; padding:7px 8px;
+     border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--card); }
+td { padding:7px 8px; border-bottom:1px solid #f1f5f9; vertical-align:top; }
+.why { color:var(--muted); font-size:11.5px; }
+.banner { border-radius:8px; padding:11px 14px; font-size:13px; margin-bottom:18px; }
+.banner.review { background:#fef3c7; border:1px solid #fcd34d; color:#78350f; }
+.banner.ok { background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; }
+.small { font-size:11.5px; color:var(--muted); }
+details { margin-top:10px; }
+summary { cursor:pointer; font-size:12.5px; color:var(--muted); }
+pre.json { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px;
+           font-size:11px; overflow:auto; max-height:340px; }
+.tag { display:inline-block; background:#eef2ff; color:#3730a3; border-radius:4px;
+       padding:1px 7px; font-size:11.5px; margin:2px 4px 2px 0; }
+</style></head>
+<body><div class="wrap">
+  <h1>Explainability report — NOTE-00512</h1>
+  <div class="sub">Every prediction below is accompanied by the evidence that produced it.
+    Hover any highlight in the note to see its type, assertion status and confidence.</div>
+  <div class="banner review"><strong>Review recommended.</strong> 10 unmapped concepts; 1 medications without a dose.</div>
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h2>Annotated note</h2>
+        <div class="legend"><span class="chip" style="background:#ffe4e6;color:#be123c">ALLERGY</span><span class="chip" style="background:#ffedd5;color:#c2410c">CONDITION</span><span class="chip" style="background:#e2e8f0;color:#475569">DATE</span><span class="chip" style="background:#e0e7ff;color:#4338ca">DOSAGE</span><span class="chip" style="background:#d1fae5;color:#047857">LAB</span><span class="chip" style="background:#ccfbf1;color:#0f766e">LAB_VALUE</span><span class="chip" style="background:#dbeafe;color:#1d4ed8">MEDICATION</span><span class="chip" style="background:#f3e8ff;color:#7e22ce">PROCEDURE</span><span class="chip" style="background:#fef9c3;color:#a16207">VITAL</span></div>
+        <div class="note">DISCHARGE SUMMARY
+=================
+
+Patient: Marley Whitfield    MRN: 7990171
+Date of Service: <mark style="background:#e2e8f0;color:#475569" title="DATE | present | conf 1.00 | hybrid | 11/22/2024">11/22/2024</mark>
+Attending: Dr. Delacroix    Service: Nephrology
+Unit: 4 West
+
+CHIEF COMPLAINT
+Patient presents with <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | present | conf 1.00 | hybrid | Cerebrovascular accident">stroke</mark> for several day(s).
+
+HISTORY OF PRESENT ILLNESS
+45 year old female with a past medical history of <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | historical | conf 1.00 | hybrid | Obstructive sleep apnea">obstructive sleep apnea</mark><span class="badge" style="color:#475569">hx</span>, <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | historical | conf 1.00 | hybrid | Atrial fibrillation">A-fib</mark><span class="badge" style="color:#475569">hx</span> and <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | historical | conf 1.00 | statistical | CKD stage 3">CKD stage 3</mark><span class="badge" style="color:#475569">hx</span> who presents with <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | present | conf 1.00 | hybrid | Cerebrovascular accident">stroke</mark>. Patient denies <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | negated | conf 0.97 | statistical | aspiration pneumonia">aspiration pneumonia</mark><span class="badge" style="color:#be123c">neg</span>. Patient has had 0 hospital admission(s) in the last 12 months.
+
+ALLERGIES
+<mark style="background:#ffe4e6;color:#be123c" title="ALLERGY | present | conf 1.00 | hybrid | Shellfish">shellfish</mark> (rash)
+
+MEDS
+- <mark style="background:#dbeafe;color:#1d4ed8" title="MEDICATION | present | conf 1.00 | hybrid | Sodium Bicarbonate">sodium bicarbonate</mark> <mark style="background:#e0e7ff;color:#4338ca" title="DOSAGE | present | conf 1.00 | hybrid | 50 mEq">50 mEq</mark> IV once
+- <mark style="background:#dbeafe;color:#1d4ed8" title="MEDICATION | present | conf 1.00 | statistical | sevelamer">sevelamer</mark> <mark style="background:#e0e7ff;color:#4338ca" title="DOSAGE | present | conf 1.00 | hybrid | 800 mg">800 mg</mark> PO TID
+- <mark style="background:#dbeafe;color:#1d4ed8" title="MEDICATION | present | conf 1.00 | hybrid | Apixaban">apixaban</mark> <mark style="background:#e0e7ff;color:#4338ca" title="DOSAGE | present | conf 1.00 | hybrid | 2.5 mg">2.5 mg</mark> PO BID
+- <mark style="background:#dbeafe;color:#1d4ed8" title="MEDICATION | present | conf 1.00 | statistical | diltiazem">diltiazem</mark> <mark style="background:#e0e7ff;color:#4338ca" title="DOSAGE | present | conf 1.00 | hybrid | 30 mg">30 mg</mark> IV continuous
+- <mark style="background:#dbeafe;color:#1d4ed8" title="MEDICATION | present | conf 1.00 | hybrid | Metoprolol Tartrate">metoprolol tartrate</mark> <mark style="background:#e0e7ff;color:#4338ca" title="DOSAGE | present | conf 1.00 | hybrid | 25 mg">25 mg</mark> PO BID
+- <mark style="background:#dbeafe;color:#1d4ed8" title="MEDICATION | negated | conf 1.00 | hybrid | Ceftriaxone">ceftriaxone</mark><span class="badge" style="color:#be123c">neg</span> discontinued this admission.
+
+VITAL SIGNS
+<mark style="background:#fef9c3;color:#a16207" title="VITAL | present | conf 1.00 | hybrid | BP">BP</mark> <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | hybrid | 117/78">117/78</mark> mmHg  <mark style="background:#fef9c3;color:#a16207" title="VITAL | present | conf 1.00 | hybrid | HR">HR</mark> <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | hybrid | 79">79</mark> bpm  <mark style="background:#fef9c3;color:#a16207" title="VITAL | present | conf 1.00 | hybrid | RR">RR</mark> <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | hybrid | 14">14</mark> breaths/min  <mark style="background:#fef9c3;color:#a16207" title="VITAL | present | conf 1.00 | hybrid | Temp">Temp</mark> <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | hybrid | 98.0">98.0</mark> F  <mark style="background:#fef9c3;color:#a16207" title="VITAL | present | conf 1.00 | hybrid | SpO2">SpO2</mark> <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | hybrid | 98">98</mark> %
+
+LABS
+Pertinent results: <mark style="background:#d1fae5;color:#047857" title="LAB | present | conf 1.00 | hybrid | Bun">BUN</mark> of <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | statistical | 17.94">17.94</mark> mg/dL, <mark style="background:#d1fae5;color:#047857" title="LAB | present | conf 1.00 | hybrid | Potassium">potassium</mark> of <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | statistical | 5.53">5.53</mark> mEq/L (H), <mark style="background:#d1fae5;color:#047857" title="LAB | present | conf 1.00 | hybrid | Troponin T">troponin T</mark> of <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | statistical | 0.00">0.00</mark> ng/mL, <mark style="background:#d1fae5;color:#047857" title="LAB | present | conf 1.00 | hybrid | White Blood Cell Count">white blood cell count</mark> of <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | statistical | 31">31</mark> K/uL (H) and <mark style="background:#d1fae5;color:#047857" title="LAB | present | conf 1.00 | hybrid | Sodium">sodium</mark> of <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | statistical | 141">141</mark> mEq/L.
+
+PROCEDURES
+- <mark style="background:#f3e8ff;color:#7e22ce" title="PROCEDURE | present | conf 1.00 | statistical | EGD">EGD</mark> performed on <mark style="background:#e2e8f0;color:#475569" title="DATE | present | conf 1.00 | hybrid | 09/19/2024">09/19/2024</mark>; unremarkable.
+- <mark style="background:#f3e8ff;color:#7e22ce" title="PROCEDURE | present | conf 1.00 | statistical | paracentesis">paracentesis</mark> performed on <mark style="background:#e2e8f0;color:#475569" title="DATE | present | conf 1.00 | hybrid | 06/07/2024">06/07/2024</mark>; showed interval improvement.
+
+INTERVAL HISTORY
+The patient's <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | present | conf 1.00 | hybrid | Cerebrovascular accident">stroke</mark> improved steadily on <mark style="background:#dbeafe;color:#1d4ed8" title="MEDICATION | present | conf 1.00 | statistical | diltiazem">diltiazem</mark> <mark style="background:#e0e7ff;color:#4338ca" title="DOSAGE | present | conf 1.00 | hybrid | 30 mg">30 mg</mark> IV continuous. Trending <mark style="background:#d1fae5;color:#047857" title="LAB | present | conf 1.00 | hybrid | Bun">BUN</mark> was <mark style="background:#ccfbf1;color:#0f766e" title="LAB_VALUE | present | conf 1.00 | statistical | 8.9">8.9</mark> mg/dL, prompting further work-up. A repeat <mark style="background:#f3e8ff;color:#7e22ce" title="PROCEDURE | present | conf 1.00 | hybrid | cardiac catheterization">CARDIAC CATHETERIZATION</mark> on <mark style="background:#e2e8f0;color:#475569" title="DATE | present | conf 1.00 | hybrid | 01/16/2024">01/16/2024</mark> showed no evidence of <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | negated | conf 1.00 | statistical | acute decompensated heart failure">acute decompensated heart failure</mark><span class="badge" style="color:#be123c">neg</span>. The patient's underlying <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | present | conf 0.91 | statistical | CK stage 3">CK stage 3</mark> required no acute intervention.
+
+IMPRESSION
+1. <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | present | conf 1.00 | hybrid | Cerebrovascular accident">stroke</mark> - continue supportive care.
+2. History of <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | historical | conf 1.00 | hybrid | Obstructive sleep apnea">obstructive sleep apnea</mark><span class="badge" style="color:#475569">hx</span> - monitor closely.
+3. History of <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | historical | conf 1.00 | hybrid | Atrial fibrillation">A-fib</mark><span class="badge" style="color:#475569">hx</span> - stable, continue home regimen.
+4. History of <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | historical | conf 1.00 | statistical | ckd stage 3">ckd stage 3</mark><span class="badge" style="color:#475569">hx</span> - monitor closely.
+Monitor for <mark style="background:#ffedd5;color:#c2410c" title="CONDITION | hypothetical | conf 1.00 | hybrid | COPD exacerbation">COPD exacerbation</mark><span class="badge" style="color:#a16207">hypo</span>.
+
+DISPOSITION
+Transferred to ICU. Follow-up scheduled for <mark style="background:#e2e8f0;color:#475569" title="DATE | present | conf 1.00 | hybrid | 09/19/2024">09/19/2024</mark> with Pulmonology.
+</div>
+      </div>
+      
+    <div class="card">
+      <h2>Entities and why they were tagged</h2>
+      <div style="max-height:520px;overflow:auto">
+      <table><thead><tr><th>mention / rationale</th><th>type</th><th>assertion</th>
+      <th>concept</th><th>conf</th><th>recognisers</th></tr></thead>
+      <tbody><tr><td><span style='color:#475569;font-weight:600'>11/22/2024</span><div class='why'>Tagged DATE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DATE</td><td>present</td><td>11/22/2024</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>stroke</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>CONDITION</td><td>present</td><td>Cerebrovascular accident</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>obstructive sleep apnea</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it.</div></td><td>CONDITION</td><td>historical</td><td>Obstructive sleep apnea</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>A-fib</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it.</div></td><td>CONDITION</td><td>historical</td><td>Atrial fibrillation</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>CKD stage 3</span><div class='why'>Tagged CONDITION because the model weighted 'sec=HPI' and 'gaz=O' (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it.</div></td><td>CONDITION</td><td>historical</td><td>CKD stage 3</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>stroke</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>CONDITION</td><td>present</td><td>Cerebrovascular accident</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>aspiration pneumonia</span><div class='why'>Tagged CONDITION because the model weighted 'sec=HPI' and 'shape=x' (confidence 0.97). Marked negated because the phrase 'denies' appears in scope before it.</div></td><td>CONDITION</td><td>negated</td><td>aspiration pneumonia</td><td class='val'>0.97</td><td class='small'>statistical</td></tr><tr><td><span style='color:#be123c;font-weight:600'>shellfish</span><div class='why'>Tagged ALLERGY because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>ALLERGY</td><td>present</td><td>Shellfish</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#1d4ed8;font-weight:600'>sodium bicarbonate</span><div class='why'>Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>MEDICATION</td><td>present</td><td>Sodium Bicarbonate</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#4338ca;font-weight:600'>50 mEq</span><div class='why'>Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DOSAGE</td><td>present</td><td>50 mEq</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#1d4ed8;font-weight:600'>sevelamer</span><div class='why'>Tagged MEDICATION because the model weighted 'sec=MEDICATIONS' and 'rule[1]=B-DOSAGE' (confidence 1.00).</div></td><td>MEDICATION</td><td>present</td><td>sevelamer</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#4338ca;font-weight:600'>800 mg</span><div class='why'>Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DOSAGE</td><td>present</td><td>800 mg</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#1d4ed8;font-weight:600'>apixaban</span><div class='why'>Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>MEDICATION</td><td>present</td><td>Apixaban</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#4338ca;font-weight:600'>2.5 mg</span><div class='why'>Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DOSAGE</td><td>present</td><td>2.5 mg</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#1d4ed8;font-weight:600'>diltiazem</span><div class='why'>Tagged MEDICATION because the model weighted 'sec=MEDICATIONS' and 'rule[1]=B-DOSAGE' (confidence 1.00).</div></td><td>MEDICATION</td><td>present</td><td>diltiazem</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#4338ca;font-weight:600'>30 mg</span><div class='why'>Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DOSAGE</td><td>present</td><td>30 mg</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#1d4ed8;font-weight:600'>metoprolol tartrate</span><div class='why'>Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>MEDICATION</td><td>present</td><td>Metoprolol Tartrate</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#4338ca;font-weight:600'>25 mg</span><div class='why'>Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DOSAGE</td><td>present</td><td>25 mg</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#1d4ed8;font-weight:600'>ceftriaxone</span><div class='why'>Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00). Marked negated because the phrase 'discontinued' appears in scope before it.</div></td><td>MEDICATION</td><td>negated</td><td>Ceftriaxone</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#a16207;font-weight:600'>BP</span><div class='why'>Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>VITAL</td><td>present</td><td>BP</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>117/78</span><div class='why'>Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>117/78</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#a16207;font-weight:600'>HR</span><div class='why'>Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>VITAL</td><td>present</td><td>HR</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>79</span><div class='why'>Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>79</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#a16207;font-weight:600'>RR</span><div class='why'>Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>VITAL</td><td>present</td><td>RR</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>14</span><div class='why'>Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>14</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#a16207;font-weight:600'>Temp</span><div class='why'>Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>VITAL</td><td>present</td><td>Temp</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>98.0</span><div class='why'>Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>98.0</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#a16207;font-weight:600'>SpO2</span><div class='why'>Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>VITAL</td><td>present</td><td>SpO2</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>98</span><div class='why'>Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>98</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#047857;font-weight:600'>BUN</span><div class='why'>Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>LAB</td><td>present</td><td>Bun</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>17.94</span><div class='why'>Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>17.94</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#047857;font-weight:600'>potassium</span><div class='why'>Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>LAB</td><td>present</td><td>Potassium</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>5.53</span><div class='why'>Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>5.53</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#047857;font-weight:600'>troponin T</span><div class='why'>Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>LAB</td><td>present</td><td>Troponin T</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>0.00</span><div class='why'>Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>0.00</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#047857;font-weight:600'>white blood cell count</span><div class='why'>Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>LAB</td><td>present</td><td>White Blood Cell Count</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>31</span><div class='why'>Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>31</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#047857;font-weight:600'>sodium</span><div class='why'>Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>LAB</td><td>present</td><td>Sodium</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>141</span><div class='why'>Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>141</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#7e22ce;font-weight:600'>EGD</span><div class='why'>Tagged PROCEDURE because the model weighted 'at_bullet_head' and 'sec=PROCEDURES' (confidence 1.00).</div></td><td>PROCEDURE</td><td>present</td><td>EGD</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#475569;font-weight:600'>09/19/2024</span><div class='why'>Tagged DATE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DATE</td><td>present</td><td>09/19/2024</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#7e22ce;font-weight:600'>paracentesis</span><div class='why'>Tagged PROCEDURE because the model weighted 'at_bullet_head' and 'sec=PROCEDURES' (confidence 1.00).</div></td><td>PROCEDURE</td><td>present</td><td>paracentesis</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#475569;font-weight:600'>06/07/2024</span><div class='why'>Tagged DATE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DATE</td><td>present</td><td>06/07/2024</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>stroke</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>CONDITION</td><td>present</td><td>Cerebrovascular accident</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#1d4ed8;font-weight:600'>diltiazem</span><div class='why'>Tagged MEDICATION because the model weighted 'rule[1]=B-DOSAGE' and 'w[2]=mg' (confidence 1.00).</div></td><td>MEDICATION</td><td>present</td><td>diltiazem</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#4338ca;font-weight:600'>30 mg</span><div class='why'>Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DOSAGE</td><td>present</td><td>30 mg</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#047857;font-weight:600'>BUN</span><div class='why'>Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>LAB</td><td>present</td><td>Bun</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#0f766e;font-weight:600'>8.9</span><div class='why'>Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00).</div></td><td>LAB_VALUE</td><td>present</td><td>8.9</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#7e22ce;font-weight:600'>CARDIAC CATHETERIZATION</span><div class='why'>Tagged PROCEDURE because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>PROCEDURE</td><td>present</td><td>cardiac catheterization</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#475569;font-weight:600'>01/16/2024</span><div class='why'>Tagged DATE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DATE</td><td>present</td><td>01/16/2024</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>acute decompensated heart failure</span><div class='why'>Tagged CONDITION because the model weighted 'shape=x' and 'shape[-1]=x' (confidence 1.00). Marked negated because the phrase 'no evidence of' appears in scope before it.</div></td><td>CONDITION</td><td>negated</td><td>acute decompensated heart failure</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>CK stage 3</span><div class='why'>Tagged CONDITION because the model weighted 'gaz=O' and 'rule[1]=O' (confidence 0.91).</div></td><td>CONDITION</td><td>present</td><td>CK stage 3</td><td class='val'>0.91</td><td class='small'>statistical</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>stroke</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00).</div></td><td>CONDITION</td><td>present</td><td>Cerebrovascular accident</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>obstructive sleep apnea</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it.</div></td><td>CONDITION</td><td>historical</td><td>Obstructive sleep apnea</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>A-fib</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it.</div></td><td>CONDITION</td><td>historical</td><td>Atrial fibrillation</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>ckd stage 3</span><div class='why'>Tagged CONDITION because the model weighted 'sec=ASSESSMENT' and 'shape[-1]=x' (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it.</div></td><td>CONDITION</td><td>historical</td><td>ckd stage 3</td><td class='val'>1.00</td><td class='small'>statistical</td></tr><tr><td><span style='color:#c2410c;font-weight:600'>COPD exacerbation</span><div class='why'>Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked hypothetical because the phrase 'monitor for' appears in scope before it.</div></td><td>CONDITION</td><td>hypothetical</td><td>COPD exacerbation</td><td class='val'>1.00</td><td class='small'>statistical, gazetteer</td></tr><tr><td><span style='color:#475569;font-weight:600'>09/19/2024</span><div class='why'>Tagged DATE because it matches the pattern rule 'None' (confidence 1.00).</div></td><td>DATE</td><td>present</td><td>09/19/2024</td><td class='val'>1.00</td><td class='small'>statistical, regex_rule</td></tr></tbody></table></div>
+    </div>
+    </div>
+    <div>
+      
+    <div class="card">
+      <h2>Note type</h2>
+      <div class="kv"><span class="k">prediction</span>
+        <span class="pred">discharge_summary</span></div>
+      <div class="kv"><span class="k">confidence</span>
+        <span>0.684</span></div>
+      <div class="kv"><span class="k">margin over runner-up</span>
+        <span>0.561</span></div>
+      <h3>Terms pushing toward this label</h3>
+      <div class="bar-row"><span class="term" title="discharge summary">discharge summary</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:var(--pos);display:block"></span></span><span class="val">+0.086</span></div><div class="bar-row"><span class="term" title="summary">summary</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:var(--pos);display:block"></span></span><span class="val">+0.086</span></div><div class="bar-row"><span class="term" title="summary patient">summary patient</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:var(--pos);display:block"></span></span><span class="val">+0.086</span></div><div class="bar-row"><span class="term" title="discharge">discharge</span><span class="bar-wrap"><span class="bar" style="width:55.5%;background:var(--pos);display:block"></span></span><span class="val">+0.048</span></div><div class="bar-row"><span class="term" title="admission vital">admission vital</span><span class="bar-wrap"><span class="bar" style="width:52.2%;background:var(--pos);display:block"></span></span><span class="val">+0.045</span></div><div class="bar-row"><span class="term" title="allergies">allergies</span><span class="bar-wrap"><span class="bar" style="width:40.8%;background:var(--pos);display:block"></span></span><span class="val">+0.035</span></div><div class="bar-row"><span class="term" title="mg po">mg po</span><span class="bar-wrap"><span class="bar" style="width:39.5%;background:var(--pos);display:block"></span></span><span class="val">+0.034</span></div><div class="bar-row"><span class="term" title="po">po</span><span class="bar-wrap"><span class="bar" style="width:39.5%;background:var(--pos);display:block"></span></span><span class="val">+0.034</span></div>
+      <h3>Terms pushing away</h3>
+      <div class="bar-row"><span class="term" title="of">of</span><span class="bar-wrap"><span class="bar" style="width:31.8%;background:var(--neg);display:block"></span></span><span class="val">-0.027</span></div><div class="bar-row"><span class="term" title="stroke">stroke</span><span class="bar-wrap"><span class="bar" style="width:27.2%;background:var(--neg);display:block"></span></span><span class="val">-0.023</span></div><div class="bar-row"><span class="term" title="117">117</span><span class="bar-wrap"><span class="bar" style="width:24.5%;background:var(--neg);display:block"></span></span><span class="val">-0.021</span></div><div class="bar-row"><span class="term" title="history">history</span><span class="bar-wrap"><span class="bar" style="width:22.7%;background:var(--neg);display:block"></span></span><span class="val">-0.019</span></div><div class="bar-row"><span class="term" title="history of">history of</span><span class="bar-wrap"><span class="bar" style="width:20.5%;background:var(--neg);display:block"></span></span><span class="val">-0.018</span></div><div class="bar-row"><span class="term" title="fib stable">fib stable</span><span class="bar-wrap"><span class="bar" style="width:19.5%;background:var(--neg);display:block"></span></span><span class="val">-0.017</span></div><div class="bar-row"><span class="term" title="bun of">bun of</span><span class="bar-wrap"><span class="bar" style="width:15.7%;background:var(--neg);display:block"></span></span><span class="val">-0.013</span></div><div class="bar-row"><span class="term" title="stroke continue">stroke continue</span><span class="bar-wrap"><span class="bar" style="width:15.0%;background:var(--neg);display:block"></span></span><span class="val">-0.013</span></div>
+      <details><summary>Class probabilities</summary><div class="kv"><span class="k">discharge_summary</span><span>0.684</span></div><div class="kv"><span class="k">progress_note</span><span>0.123</span></div><div class="kv"><span class="k">consult_note</span><span>0.115</span></div><div class="kv"><span class="k">ed_note</span><span>0.079</span></div></details>
+      <p class="small">Logit 1.417 = intercept -0.600
+         + 2.017 from 428
+         active terms. Contributions are exact (tf-idf value x model weight), not sampled.</p>
+    </div>
+      
+    <div class="card">
+      <h2>Readmission risk</h2>
+      <div class="kv"><span class="k">prediction</span>
+        <span class="pred">medium</span></div>
+      <div class="kv"><span class="k">confidence</span>
+        <span>0.706</span></div>
+      <div class="kv"><span class="k">margin over runner-up</span>
+        <span>0.438</span></div>
+      <h3>Terms pushing toward this label</h3>
+      <div class="bar-row"><span class="term" title="struct:n_medications=6+">struct:n_medications=6+</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:var(--pos);display:block"></span></span><span class="val">+0.665</span></div><div class="bar-row"><span class="term" title="struct:abnormal_labs=2">struct:abnormal_labs=2</span><span class="bar-wrap"><span class="bar" style="width:55.3%;background:var(--pos);display:block"></span></span><span class="val">+0.368</span></div><div class="bar-row"><span class="term" title="struct:prior_admissions=0">struct:prior_admissions=0</span><span class="bar-wrap"><span class="bar" style="width:8.5%;background:var(--pos);display:block"></span></span><span class="val">+0.057</span></div><div class="bar-row"><span class="term" title="struct:n_labs=6">struct:n_labs=6</span><span class="bar-wrap"><span class="bar" style="width:6.6%;background:var(--pos);display:block"></span></span><span class="val">+0.044</span></div><div class="bar-row"><span class="term" title="struct:n_chronic=4">struct:n_chronic=4</span><span class="bar-wrap"><span class="bar" style="width:4.4%;background:var(--pos);display:block"></span></span><span class="val">+0.029</span></div><div class="bar-row"><span class="term" title="s stroke">s stroke</span><span class="bar-wrap"><span class="bar" style="width:3.2%;background:var(--pos);display:block"></span></span><span class="val">+0.021</span></div><div class="bar-row"><span class="term" title="30 mg">30 mg</span><span class="bar-wrap"><span class="bar" style="width:3.0%;background:var(--pos);display:block"></span></span><span class="val">+0.020</span></div><div class="bar-row"><span class="term" title="30">30</span><span class="bar-wrap"><span class="bar" style="width:2.9%;background:var(--pos);display:block"></span></span><span class="val">+0.019</span></div>
+      <h3>Terms pushing away</h3>
+      <div class="bar-row"><span class="term" title="struct:n_negated_conditions=2">struct:n_negated_conditions=2</span><span class="bar-wrap"><span class="bar" style="width:77.7%;background:var(--neg);display:block"></span></span><span class="val">-0.517</span></div><div class="bar-row"><span class="term" title="struct:n_entities_bucket=5">struct:n_entities_bucket=5</span><span class="bar-wrap"><span class="bar" style="width:57.8%;background:var(--neg);display:block"></span></span><span class="val">-0.385</span></div><div class="bar-row"><span class="term" title="struct:abnormal_vitals=0">struct:abnormal_vitals=0</span><span class="bar-wrap"><span class="bar" style="width:43.4%;background:var(--neg);display:block"></span></span><span class="val">-0.289</span></div><div class="bar-row"><span class="term" title="struct:disposition=icu_transfer">struct:disposition=icu_transfer</span><span class="bar-wrap"><span class="bar" style="width:35.7%;background:var(--neg);display:block"></span></span><span class="val">-0.238</span></div><div class="bar-row"><span class="term" title="struct:n_affirmed_conditions=8+">struct:n_affirmed_conditions=8+</span><span class="bar-wrap"><span class="bar" style="width:21.9%;background:var(--neg);display:block"></span></span><span class="val">-0.145</span></div><div class="bar-row"><span class="term" title="19 2024">19 2024</span><span class="bar-wrap"><span class="bar" style="width:5.4%;background:var(--neg);display:block"></span></span><span class="val">-0.036</span></div><div class="bar-row"><span class="term" title="sleep">sleep</span><span class="bar-wrap"><span class="bar" style="width:5.1%;background:var(--neg);display:block"></span></span><span class="val">-0.034</span></div><div class="bar-row"><span class="term" title="obstructive sleep">obstructive sleep</span><span class="bar-wrap"><span class="bar" style="width:5.1%;background:var(--neg);display:block"></span></span><span class="val">-0.034</span></div>
+      <details><summary>Class probabilities</summary><div class="kv"><span class="k">medium</span><span>0.706</span></div><div class="kv"><span class="k">high</span><span>0.268</span></div><div class="kv"><span class="k">low</span><span>0.027</span></div></details>
+      <p class="small">Logit 1.413 = intercept 1.997
+         + -0.584 from 438
+         active terms. Contributions are exact (tf-idf value x model weight), not sampled.</p>
+    </div>
+      
+    <div class="card">
+      <h2>Problem flags (multi-label)</h2>
+      <div><span class="tag">atrial_fibrillation</span><span class="tag">ckd</span></div>
+      <details open><summary>Per-flag probability (threshold 0.5)</summary><div class="kv"><span class="k">✓ atrial_fibrillation</span><span>0.913</span></div><div class="kv"><span class="k">✓ ckd</span><span>0.796</span></div><div class="kv"><span class="k">hypertension</span><span>0.419</span></div><div class="kv"><span class="k">sepsis</span><span>0.258</span></div><div class="kv"><span class="k">heart_failure</span><span>0.235</span></div><div class="kv"><span class="k">pneumonia</span><span>0.226</span></div><div class="kv"><span class="k">copd</span><span>0.200</span></div><div class="kv"><span class="k">diabetes</span><span>0.120</span></div></details>
+      <h3>atrial_fibrillation — evidence</h3><div class="bar-row"><span class="term" title="a fib">a fib</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:var(--pos);display:block"></span></span><span class="val">+0.414</span></div><div class="bar-row"><span class="term" title="fib">fib</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:var(--pos);display:block"></span></span><span class="val">+0.414</span></div><div class="bar-row"><span class="term" title="diltiazem">diltiazem</span><span class="bar-wrap"><span class="bar" style="width:53.5%;background:var(--pos);display:block"></span></span><span class="val">+0.221</span></div><div class="bar-row"><span class="term" title="of a">of a</span><span class="bar-wrap"><span class="bar" style="width:52.2%;background:var(--pos);display:block"></span></span><span class="val">+0.216</span></div><div class="bar-row"><span class="term" title="diltiazem 30">diltiazem 30</span><span class="bar-wrap"><span class="bar" style="width:37.5%;background:var(--pos);display:block"></span></span><span class="val">+0.155</span></div><div class="bar-row"><span class="term" title="30 mg">30 mg</span><span class="bar-wrap"><span class="bar" style="width:35.1%;background:var(--pos);display:block"></span></span><span class="val">+0.145</span></div><div class="bar-row"><span class="term" title="apixaban">apixaban</span><span class="bar-wrap"><span class="bar" style="width:27.7%;background:var(--pos);display:block"></span></span><span class="val">+0.115</span></div><div class="bar-row"><span class="term" title="tartrate">tartrate</span><span class="bar-wrap"><span class="bar" style="width:25.9%;background:var(--pos);display:block"></span></span><span class="val">+0.107</span></div><h3>ckd — evidence</h3><div class="bar-row"><span class="term" title="stage">stage</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:var(--pos);display:block"></span></span><span class="val">+0.337</span></div><div class="bar-row"><span class="term" title="stage 3">stage 3</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:var(--pos);display:block"></span></span><span class="val">+0.337</span></div><div class="bar-row"><span class="term" title="ckd">ckd</span><span class="bar-wrap"><span class="bar" style="width:81.4%;background:var(--pos);display:block"></span></span><span class="val">+0.274</span></div><div class="bar-row"><span class="term" title="ckd stage">ckd stage</span><span class="bar-wrap"><span class="bar" style="width:78.5%;background:var(--pos);display:block"></span></span><span class="val">+0.265</span></div><div class="bar-row"><span class="term" title="of ckd">of ckd</span><span class="bar-wrap"><span class="bar" style="width:37.4%;background:var(--pos);display:block"></span></span><span class="val">+0.126</span></div><div class="bar-row"><span class="term" title="800">800</span><span class="bar-wrap"><span class="bar" style="width:30.8%;background:var(--pos);display:block"></span></span><span class="val">+0.104</span></div><div class="bar-row"><span class="term" title="800 mg">800 mg</span><span class="bar-wrap"><span class="bar" style="width:30.8%;background:var(--pos);display:block"></span></span><span class="val">+0.104</span></div><div class="bar-row"><span class="term" title="po tid">po tid</span><span class="bar-wrap"><span class="bar" style="width:30.8%;background:var(--pos);display:block"></span></span><span class="val">+0.104</span></div>
+    </div>
+      <div class="card"><h2>Counterfactual check (feature-family occlusion)</h2><h3>stroke (CONDITION)</h3><p class='small'>Baseline probability 1.000. Each bar is how far the probability falls when that feature family is removed.</p><div class="bar-row"><span class="term" title="gaz">gaz</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:#4338ca;display:block"></span></span><span class="val">+0.006</span></div><div class="bar-row"><span class="term" title="w">w</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="rule">rule</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="sec">sec</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">-0.000</span></div><div class="bar-row"><span class="term" title="shape">shape</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="suf">suf</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="pre">pre</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><h3>obstructive sleep apnea (CONDITION)</h3><p class='small'>Baseline probability 1.000. Each bar is how far the probability falls when that feature family is removed.</p><div class="bar-row"><span class="term" title="gaz">gaz</span><span class="bar-wrap"><span class="bar" style="width:100.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="w">w</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="rule">rule</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="sec">sec</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="shape">shape</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">-0.000</span></div><div class="bar-row"><span class="term" title="suf">suf</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">+0.000</span></div><div class="bar-row"><span class="term" title="pre">pre</span><span class="bar-wrap"><span class="bar" style="width:0.0%;background:#4338ca;display:block"></span></span><span class="val">-0.000</span></div></div>
+      <div class="card">
+        <h2>Extraction summary</h2>
+        <div class="kv"><span class="k">n_entities</span><span>58</span></div><div class="kv"><span class="k">entities_by_source</span><span>{'hybrid': 42, 'statistical': 16}</span></div><div class="kv"><span class="k">entities_by_assertion</span><span>{'present': 48, 'historical': 6, 'negated': 3, 'hypothetical': 1}</span></div><div class="kv"><span class="k">mean_entity_confidence</span><span>0.9969</span></div><div class="kv"><span class="k">n_low_confidence_entities</span><span>0</span></div><div class="kv"><span class="k">note_type_confidence</span><span>0.684</span></div><div class="kv"><span class="k">risk_confidence</span><span>0.7057</span></div><div class="kv"><span class="k">review_recommended</span><span>False</span></div>
+        <details><summary>Structured output record (JSON)</summary><pre class="json">{
+  "doc_id": "NOTE-00512",
+  "patient_id": "PT-83319",
+  "encounter_date": "11/22/2024",
+  "note_type": "discharge_summary",
+  "problems": [
+    {
+      "text": "stroke",
+      "concept": "Cerebrovascular accident",
+      "code": "I63.9",
+      "assertion": "present",
+      "section": "CHIEF_COMPLAINT",
+      "start": 207,
+      "end": 213,
+      "confidence": 0.999,
+      "source": "hybrid",
+      "mention_count": 4
+    },
+    {
+      "text": "obstructive sleep apnea",
+      "concept": "Obstructive sleep apnea",
+      "code": "G47.33",
+      "assertion": "historical",
+      "section": "HPI",
+      "start": 312,
+      "end": 335,
+      "confidence": 0.999,
+      "source": "hybrid",
+      "mention_count": 2
+    },
+    {
+      "text": "A-fib",
+      "concept": "Atrial fibrillation",
+      "code": "I48.91",
+      "assertion": "historical",
+      "section": "HPI",
+      "start": 337,
+      "end": 342,
+      "confidence": 0.999,
+      "source": "hybrid",
+      "mention_count": 2
+    },
+    {
+      "text": "ckd stage 3",
+      "concept": "ckd stage 3",
+      "code": null,
+      "assertion": "historical",
+      "section": "ASSESSMENT",
+      "start": 1579,
+      "end": 1590,
+      "confidence": 1.0,
+      "source": "statistical",
+      "mention_count": 2
+    },
+    {
+      "text": "CK stage 3",
+      "concept": "CK stage 3",
+      "code": null,
+      "assertion": "present",
+      "section": "HOSPITAL_COURSE",
+      "start": 1362,
+      "end": 1372,
+      "confidence": 0.9095,
+      "source": "statistical"
+    }
+  ],
+  "medications": [
+    {
+      "name": "Sodium Bicarbonate",
+      "text": "sodium bicarbonate",
+      "code": "RX36676",
+      "dose": "50 mEq",
+      "route": "IV",
+      "frequency": "once",
+      "status": "active",
+      "assertion": "present",
+      "section": "MEDICATIONS",
+      "confidence": 0.999,
+      "start": 521,
+      "end": 539
+    },
+    {
+      "name": "sevelamer",
+      "text": "sevelamer",
+      "code": null,
+      "dose": "800 mg",
+      "route": "PO",
+      "frequency": "TID",
+      "status": "active",
+      "assertion": "present",
+      "section": "MEDICATIONS",
+      "confidence": 1.0,
+      "start": 557,
+      "end": 566
+    },
+    {
+      "name": "Apixaban",
+      "text": "apixaban",
+      "code": "RX1364435",
+      "dose": "2.5 mg",
+      "route": "PO",
+      "frequency": "BID",
+      "status": "active",
+      "assertion": "present",
+      "section": "MEDICATIONS",
+      "confidence": 0.999,
+      "start": 583,
+      "end": 591
+    },
+    {
+      "name": "diltiazem",
+      "text": "diltiazem",
+      "code": null,
+      "dose": "30 mg",
+      "route": "IV",
+      "frequency": "continuous",
+      "status": "active",
+      "assertion": "present",
+      "section": "MEDICATIONS",
+      "confidence": 1.0,
+      "start": 608,
+      "end": 617,
+      "mention_count": 2
+    },
+    {
+      "name": "Metoprolol Tartrate",
+      "text": "metoprolol tartrate",
+      "code": "RX6918",
+      "dose": "25 mg",
+      "route": "PO",
+      "frequency": "BID",
+      "status": "active",
+      "assertion": "present",
+      "section": "MEDICATIONS",
+      "confidence": 0.999,
+      "start": 640,
+      "end": 659
+    },
+    {
+      "name": "Ceftriaxone",
+      "text": "ceftriaxone",
+      "code": "RX2193",
+      "dose": null,
+      "route": null,
+      "frequency": null,
+      "status": "discontinued",
+      "assertion": "negated",
+      "section": "MEDICATIONS",
+      "confidence": 0.999,
+      "start": 675,
+      "end": 686
+    }
+  ],
+  "labs": [
+    {
+      "test": "Bun",
+      "text": "BUN",
+      "value": "17.94",
+      "value_numeric": 17.94,
+      "unit": "mg/dL",
+      "abnormal_flag": null,
+      "section": "LABS",
+      "confidence": 0.999,
+      "start": 823,
+      "end": 826
+    },
+    {
+      "test": "Potassium",
+      "text": "potassium",
+      "value": "5.53",
+      "value_numeric": 5.53,
+      "unit": "mEq/L",
+      "abnormal_flag": "L",
+      "section": "LABS",
+      "confidence": 0.999,
+      "start": 843,
+      "end": 852
+    },
+    {
+      "test": "Troponin T",
+      "text": "troponin T",
+      "value": "0.00",
+      "value_numeric": 0.0,
+      "unit": "ng/mL",
+      "abnormal_flag": null,
+      "section": "LABS",
+      "confidence": 0.999,
+      "start": 872,
+      "end": 882
+    },
+    {
+      "test": "White Blood Cell Count",
+      "text": "white blood cell count",
+      "value": "31",
+      "value_numeric": 31.0,
+      "unit": "K/uL",
+      "abnormal_flag": "H",
+      "section": "LABS",
+      "confidence": 0.999,
+      "start": 898,
+      "end": 920
+    },
+    {
+      "test": "Sodium",
+      "text": "sodium",
+      "value": "141",
+      "value_numeric": 141.0,
+      "unit": "mEq/L",
+      "abnormal_flag": "L",
+      "section": "LABS",
+      "confidence": 0.999,
+      "start": 940,
+      "end": 946
+    },
+    {
+      "test": "Bun",
+      "text": "BUN",
+      "value": "8.9",
+      "value_numeric": 8.9,
+      "unit": "mg/dL",
+      "abnormal_flag": null,
+      "section": "HOSPITAL_COURSE",
+      "confidence": 0.999,
+      "start": 1187,
+      "end": 1190
+    }
+  ],
+  "vitals": [
+    {
+      "measure": "BP",
+      "value": "117/78",
+      "unit": "mmHg",
+      "confidence": 0.999,
+      "start": 729,
+      "end": 731
+    },
+    {
+      "measure": "HR",
+      "value": "79",
+      "unit": "bpm",
+      "confidence": 0.999,
+      "start": 745,
+      "end": 747
+    },
+    {
+      "measure": "RR",
+      "value": "14",
+      "unit": "breaths/min",
+      "confidence": 0.999,
+      "start": 756,
+      "end": 758
+    },
+    {
+      "measure": "Temp",
+      "value": "98.0",
+      "unit": "F",
+      "confidence": 0.999,
+      "start": 775,
+      "end": 779
+    },
+    {
+      "measure": "SpO2",
+      "value": "98",
+      "unit": "%",
+      "confidence": 0.999,
+      "start": 788,
+      "end": 792
+    }
+  ],
+  "procedures": [
+    {
+      "text": "EGD",
+      "concept": "EGD",
+      "code": null,
+      "assertion": "present",
+      "section": "PROCEDURES",
+      "start": 975,
+      "end": 978,
+      "confidence": 0.9959,
+      "source": "statistical"
+    },
+    {
+      "text": "paracentesis",
+      "concept": "paracentesis",
+      "code": null,
+      "assertion": "present",
+      "section": "PROCEDURES",
+      "start": 1020,
+      "end": 1032,
+      "confidence": 0.9993,
+      "source": "statistical"
+    },
+    {
+      "text": "CARDIAC CATHETERIZATION",
+      "concept": "cardiac catheterization",
+      "code": "93458",
+      "assertion": "present",
+      "section": "HOSPITAL_COURSE",
+      "start": 1242,
+      "end": 1265,
+      "confidence": 0.999,
+      "source": "hybrid"
+    }
+  ],
+  "allergies": [
+    {
+      "substance": "Shellfish",
+      "reaction": "rash",
+      "section": "ALLERGIES",
+      "confidence": 0.999,
+      "start": 496,
+      "end": 505
+    }
+  ],
+  "problem_flags": [
+    "atrial_fibrillation",
+    "ckd"
+  ],
+  "readmission_risk": "medium",
+  "negated_mentions": [
+    {
+      "text": "aspiration pneumonia",
+      "concept": "aspiration pneumonia",
+      "code": null,
+      "assertion": "negated",
+      "section": "HPI",
+      "start": 400,
+      "end": 420,
+      "confidence": 0.9666,
+      "source": "statistical"
+    },
+    {
+      "text": "acute decompensated heart failure",
+      "concept": "acute decompensated heart failure",
+      "code": null,
+      "assertion": "negated",
+      "section": "HOSPITAL_COURSE",
+      "start": 1302,
+      "end": 1335,
+      "confidence": 0.9978,
+      "source": "statistical"
+    },
+    {
+      "text": "COPD exacerbation",
+      "concept": "COPD exacerbation",
+      "code": "J44.1",
+      "assertion": "hypothetical",
+      "section": "ASSESSMENT",
+      "start": 1622,
+      "end": 1639,
+      "confidence": 0.999,
+      "source": "hybrid"
+    }
+  ],
+  "explanations": {
+    "summary": {
+      "n_entities": 58,
+      "entities_by_source": {
+        "hybrid": 42,
+        "statistical": 16
+      },
+      "entities_by_assertion": {
+        "present": 48,
+        "historical": 6,
+        "negated": 3,
+        "hypothetical": 1
+      },
+      "mean_entity_confidence": 0.9969,
+      "n_low_confidence_entities": 0,
+      "note_type_confidence": 0.684,
+      "risk_confidence": 0.7057,
+      "review_recommended": false
+    },
+    "note_type": {
+      "prediction": "discharge_summary",
+      "confidence": 0.684,
+      "top_terms": [
+        {
+          "term": "discharge summary",
+          "contribution": 0.0858
+        },
+        {
+          "term": "summary",
+          "contribution": 0.0858
+        },
+        {
+          "term": "summary patient",
+          "contribution": 0.0858
+        },
+        {
+          "term": "discharge",
+          "contribution": 0.0476
+        }
+      ]
+    },
+    "readmission_risk": {
+      "prediction": "medium",
+      "confidence": 0.7057,
+      "top_terms": [
+        {
+          "term": "struct:n_medications=6+",
+          "contribution": 0.6653
+        },
+        {
+          "term": "struct:abnormal_labs=2",
+          "contribution": 0.3681
+        },
+        {
+          "term": "struct:prior_admissions=0",
+          "contribution": 0.0567
+        },
+        {
+          "term": "struct:n_labs=6",
+          "contribution": 0.044
+        }
+      ]
+    },
+    "problem_flags": {
+      "prediction": [
+        "atrial_fibrillation",
+        "ckd"
+      ],
+      "label_probabilities": {
+        "diabetes": 0.1202,
+        "heart_failure": 0.2349,
+        "copd": 0.2001,
+        "ckd": 0.7964,
+        "sepsis": 0.2575,
+        "atrial_fibrillation": 0.9135,
+        "pneumonia": 0.2264,
+        "hypertension": 0.4194
+      }
+    },
+    "rule_based_problem_flags": [
+      "atrial_fibrillation",
+      "ckd"
+    ],
+    "structured_features_used_by_risk_model": [
+      "abnormal_labs=2",
+      "abnormal_vitals=0",
+      "disposition=icu_transfer",
+      "n_affirmed_conditions=8+",
+      "n_chronic=4",
+      "n_entities_bucket=5",
+      "n_labs=6",
+      "n_medications=6+",
+      "n_negated_conditions=2",
+      "prior_admissions=0"
+    ],
+    "entities": [
+      {
+        "text": "11/22/2024",
+        "label": "DATE",
+        "assertion": "present",
+        "concept": "11/22/2024",
+        "confidence": 0.999,
+        "why": "Tagged DATE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "stroke",
+        "label": "CONDITION",
+        "assertion": "present",
+        "concept": "Cerebrovascular accident",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "obstructive sleep apnea",
+        "label": "CONDITION",
+        "assertion": "historical",
+        "concept": "Obstructive sleep apnea",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it."
+      },
+      {
+        "text": "A-fib",
+        "label": "CONDITION",
+        "assertion": "historical",
+        "concept": "Atrial fibrillation",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it."
+      },
+      {
+        "text": "CKD stage 3",
+        "label": "CONDITION",
+        "assertion": "historical",
+        "concept": "CKD stage 3",
+        "confidence": 0.9998,
+        "why": "Tagged CONDITION because the model weighted 'sec=HPI' and 'gaz=O' (confidence 1.00). Marked historical because the phrase 'history of' appears in scope before it."
+      },
+      {
+        "text": "stroke",
+        "label": "CONDITION",
+        "assertion": "present",
+        "concept": "Cerebrovascular accident",
+        "confidence": 0.999,
+        "why": "Tagged CONDITION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "aspiration pneumonia",
+        "label": "CONDITION",
+        "assertion": "negated",
+        "concept": "aspiration pneumonia",
+        "confidence": 0.9666,
+        "why": "Tagged CONDITION because the model weighted 'sec=HPI' and 'shape=x' (confidence 0.97). Marked negated because the phrase 'denies' appears in scope before it."
+      },
+      {
+        "text": "shellfish",
+        "label": "ALLERGY",
+        "assertion": "present",
+        "concept": "Shellfish",
+        "confidence": 0.999,
+        "why": "Tagged ALLERGY because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "sodium bicarbonate",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "Sodium Bicarbonate",
+        "confidence": 0.999,
+        "why": "Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "50 mEq",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "50 mEq",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "sevelamer",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "sevelamer",
+        "confidence": 1.0,
+        "why": "Tagged MEDICATION because the model weighted 'sec=MEDICATIONS' and 'rule[1]=B-DOSAGE' (confidence 1.00)."
+      },
+      {
+        "text": "800 mg",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "800 mg",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "apixaban",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "Apixaban",
+        "confidence": 0.999,
+        "why": "Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "2.5 mg",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "2.5 mg",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "diltiazem",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "diltiazem",
+        "confidence": 1.0,
+        "why": "Tagged MEDICATION because the model weighted 'sec=MEDICATIONS' and 'rule[1]=B-DOSAGE' (confidence 1.00)."
+      },
+      {
+        "text": "30 mg",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "30 mg",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "metoprolol tartrate",
+        "label": "MEDICATION",
+        "assertion": "present",
+        "concept": "Metoprolol Tartrate",
+        "confidence": 0.999,
+        "why": "Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "25 mg",
+        "label": "DOSAGE",
+        "assertion": "present",
+        "concept": "25 mg",
+        "confidence": 0.999,
+        "why": "Tagged DOSAGE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "ceftriaxone",
+        "label": "MEDICATION",
+        "assertion": "negated",
+        "concept": "Ceftriaxone",
+        "confidence": 0.999,
+        "why": "Tagged MEDICATION because it is a known term in the clinical dictionary (confidence 1.00). Marked negated because the phrase 'discontinued' appears in scope before it."
+      },
+      {
+        "text": "BP",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "BP",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "117/78",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "117/78",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "HR",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "HR",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "79",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "79",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "RR",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "RR",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "14",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "14",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "Temp",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "Temp",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "98.0",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "98.0",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "SpO2",
+        "label": "VITAL",
+        "assertion": "present",
+        "concept": "SpO2",
+        "confidence": 0.999,
+        "why": "Tagged VITAL because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "98",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "98",
+        "confidence": 0.999,
+        "why": "Tagged LAB_VALUE because it matches the pattern rule 'None' (confidence 1.00)."
+      },
+      {
+        "text": "BUN",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "Bun",
+        "confidence": 0.999,
+        "why": "Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "17.94",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "17.94",
+        "confidence": 1.0,
+        "why": "Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00)."
+      },
+      {
+        "text": "potassium",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "Potassium",
+        "confidence": 0.999,
+        "why": "Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "5.53",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "5.53",
+        "confidence": 1.0,
+        "why": "Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00)."
+      },
+      {
+        "text": "troponin T",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "Troponin T",
+        "confidence": 0.999,
+        "why": "Tagged LAB because it is a known term in the clinical dictionary (confidence 1.00)."
+      },
+      {
+        "text": "0.00",
+        "label": "LAB_VALUE",
+        "assertion": "present",
+        "concept": "0.00",
+        "confidence": 1.0,
+        "why": "Tagged LAB_VALUE because the model weighted 'has_digit' and 'rule=O' (confidence 1.00)."
+      },
+      {
+        "text": "white blood cell count",
+        "label": "LAB",
+        "assertion": "present",
+        "concept": "White Blood Cell Count",
+        "confidence": 0.999,
+        "why": "Tagged LAB because</pre></details>
+      </div>
+    </div>
+  </div>
+</div></body></html>
